@@ -1,7 +1,10 @@
 package com.assignment.rest.data.entity;
 
+import com.assignment.rest.converter.StringListConverter;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "RESERVATION")
@@ -16,6 +19,9 @@ public class Reservation {
     private Date checkIn;
     @Column(name = "CHECK_OUT")
     private Date checkOut;
+    @Column(name = "GUEST_LIST")
+    @Convert(converter = StringListConverter.class)
+    private List<Guest> guestList;
 
     public String getReservationId() {
         return reservationId;
@@ -48,4 +54,12 @@ public class Reservation {
     public void setCheckOut(Date checkOut) {
         this.checkOut = checkOut;
     }
+
+//    public List<Guest> getGuestList() {
+//        return guestList;
+//    }
+//
+//    public void setGuestList(List<Guest> guestList) {
+//        this.guestList = guestList;
+//    }
 }

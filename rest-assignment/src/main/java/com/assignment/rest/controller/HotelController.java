@@ -3,7 +3,6 @@ package com.assignment.rest.controller;
 import com.assignment.rest.data.entity.ConfirmationNumber;
 import com.assignment.rest.data.entity.Hotel;
 import com.assignment.rest.data.entity.Reservation;
-import com.assignment.rest.data.repository.GuestRepository;
 import com.assignment.rest.data.repository.HotelRepository;
 import com.assignment.rest.data.repository.ReservationRepository;
 import com.assignment.rest.error.HotelNotFoundException;
@@ -14,8 +13,6 @@ import org.springframework.web.bind.annotation.*;
 public class HotelController {
     @Autowired
     private HotelRepository hotelRepository;
-    @Autowired
-    private GuestRepository guestRepository;
     @Autowired
     private ReservationRepository reservationRepository;
 
