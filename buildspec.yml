@@ -14,5 +14,4 @@ phases:
       - mvn package
 artifacts:
   files:
-    - target/rest-1.0-SNAPSHOT.jar
-  discard-paths: yes
+    - target/rest-0.0.1-SNAPSHOT.war
