@@ -5,6 +5,12 @@ public class Guest {
     private String lastName;
     private Gender gender;
 
+    public Guest(String firstName, String lastName, Gender gender) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -28,4 +34,14 @@ public class Guest {
     public void setGender(Gender gender) {
         this.gender = gender;
     }
+
+    @Override
+    public String toString(){
+        return "Guest{" +
+                "firstName=" + firstName +
+                ", lastName=" + lastName +
+                ", gender=" + gender.getCode() +
+                '}';
+    }
+
 }
