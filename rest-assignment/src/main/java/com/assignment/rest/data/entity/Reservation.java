@@ -14,7 +14,7 @@ public class Reservation {
     private String hotelName;
     private Date checkIn;
     private Date checkOut;
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL)
     private List<Guest> guestList;
 
     public Long getReservationId() {

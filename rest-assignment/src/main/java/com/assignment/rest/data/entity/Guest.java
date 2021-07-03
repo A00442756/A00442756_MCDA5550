@@ -19,8 +19,8 @@ public class Guest {
 		this.gender = gender;
 	}
 
-    public Guest() {
-    }
+//    public Guest() {
+//    }
 
     public Long getGuestId() {
 		return guestId;
