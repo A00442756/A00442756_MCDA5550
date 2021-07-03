@@ -1,15 +1,34 @@
 package com.assignment.rest.data.entity;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "GUEST")
 public class Guest {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long guestId;
     private String firstName;
     private String lastName;
     private Gender gender;
 
-    public Guest(String firstName, String lastName, Gender gender) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
+    public Guest(Long guestId, String firstName, String lastName, Gender gender) {
+		this.guestId = guestId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.gender = gender;
+	}
+
+    public Guest() {
     }
+
+    public Long getGuestId() {
+		return guestId;
+	}
+
+	public void setGuestId(Long guestId) {
+		this.guestId = guestId;
+	}
 
     public String getFirstName() {
         return firstName;
@@ -35,13 +54,5 @@ public class Guest {
         this.gender = gender;
     }
 
-    @Override
-    public String toString(){
-        return "Guest{" +
-                "firstName=" + firstName +
-                ", lastName=" + lastName +
-                ", gender=" + gender.getCode() +
-                '}';
-    }
 
 }

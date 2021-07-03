@@ -1,7 +1,5 @@
 package com.assignment.rest.data.entity;
 
-import com.assignment.rest.converter.StringListConverter;
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -12,22 +10,18 @@ public class Reservation {
     @Id
     @Column(name = "RESERVATION_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String reservationId;
-    @Column(name = "HOTEL_NAME")
+    private Long reservationId;
     private String hotelName;
-    @Column(name = "CHECK_IN")
     private Date checkIn;
-    @Column(name = "CHECK_OUT")
     private Date checkOut;
-    @Column(name = "GUEST_LIST")
-    @Convert(converter = StringListConverter.class)
+    @OneToMany
     private List<Guest> guestList;
 
-    public String getReservationId() {
+    public Long getReservationId() {
         return reservationId;
     }
 
-    public void setReservationId(String reservationId) {
+    public void setReservationId(Long reservationId) {
         this.reservationId = reservationId;
     }
 
@@ -55,11 +49,11 @@ public class Reservation {
         this.checkOut = checkOut;
     }
 
-//    public List<Guest> getGuestList() {
-//        return guestList;
-//    }
-//
-//    public void setGuestList(List<Guest> guestList) {
-//        this.guestList = guestList;
-//    }
+    public List<Guest> getGuestList() {
+        return guestList;
+    }
+
+    public void setGuestList(List<Guest> guestList) {
+        this.guestList = guestList;
+    }
 }

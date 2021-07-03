@@ -5,7 +5,7 @@ import com.assignment.rest.data.entity.Hotel;
 import com.assignment.rest.data.entity.Reservation;
 import com.assignment.rest.data.repository.HotelRepository;
 import com.assignment.rest.data.repository.ReservationRepository;
-import com.assignment.rest.error.HotelNotFoundException;
+import com.assignment.rest.exception.HotelNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

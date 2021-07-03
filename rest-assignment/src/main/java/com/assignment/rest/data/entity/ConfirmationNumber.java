@@ -1,17 +1,22 @@
 package com.assignment.rest.data.entity;
 
 public class ConfirmationNumber {
-    private String confirmationNumber;
+    private Long confirmationNumber;
 
-    public ConfirmationNumber(String confirmationNumber) {
+    public ConfirmationNumber(Long confirmationNumber) {
         this.confirmationNumber = confirmationNumber;
     }
 
-    public String getConfirmationNumber() {
+    public Long getConfirmationNumber() {
         return confirmationNumber;
     }
 
-    public void setConfirmationNumber(String confirmationNumber) {
+    public void setConfirmationNumber(Long confirmationNumber) {
         this.confirmationNumber = confirmationNumber;
+    }
+    
+    @Override
+    public String toString() {
+    	return "" + this.confirmationNumber + "";
     }
 }

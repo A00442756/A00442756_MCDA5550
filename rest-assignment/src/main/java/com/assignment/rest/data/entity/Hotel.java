@@ -1,7 +1,8 @@
 package com.assignment.rest.data.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -9,13 +10,10 @@ import javax.persistence.Table;
 @Table(name = "HOTELS")
 public class Hotel {
     @Id
-    @Column(name = "HOTEL_ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long hotelId;
-    @Column(name = "HOTEL_NAME")
     private String hotelName;
-    @Column(name = "PRICE")
     private int price;
-    @Column(name = "AVAILABILITY")
     private boolean availability;
 
     public long getHotelId() {
@@ -51,3 +49,4 @@ public class Hotel {
     }
 
 }
+
