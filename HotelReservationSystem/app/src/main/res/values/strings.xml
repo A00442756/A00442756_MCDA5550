@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">HotelReservationSystem</string>
+    <string name="welcome_text">Hotel Reservation System</string>
+    <string name="guests_count">Guests count</string>
+    <string name="check_in">Check in date</string>
+    <string name="check_out">Check out date</string>
+</resources>
