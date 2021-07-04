@@ -19,12 +19,12 @@ public class HotelController {
     ConfirmationNumber confirmationNumber;
 
     @GetMapping("/hotels")
-    public Iterable<Hotel> getHotelList(){
+    public Iterable<Hotel> getListOfHotels(){
         return this.hotelRepository.findAll();
     }
 
     @GetMapping("/hotels/{id}")
-    Hotel one(@PathVariable Long id) {
+    Hotel getOneHotel(@PathVariable Long id) {
 
         return hotelRepository.findById(id)
                 .orElseThrow(() -> new HotelNotFoundException(id));
