@@ -1,10 +1,10 @@
 package com.example.hotelreservationsystem;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,7 +16,6 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit.Callback;
@@ -45,8 +44,11 @@ public class HotelListFragment extends Fragment implements ItemClickListener{
         String checkInDate = getArguments().getString("check_in_date");
         String checkOutDate = getArguments().getString("check_out_date");
         String guestsCount = getArguments().getString("guests_count");
-        headingTextView.setText("The following rooms are available for your check in date of "+ checkInDate +
-                " and check out date of "+ checkOutDate +" with "+ guestsCount +" number of guests");
+        int guestsCountInt = Integer.parseInt(guestsCount);
+        Resources res = getResources();
+        String guestsCountFormatted = res.getQuantityString(R.plurals.number_of_guests, guestsCountInt, guestsCountInt);
+        String headingText = getString(R.string.heading_text, checkInDate, checkOutDate, guestsCountFormatted);
+        headingTextView.setText(headingText);
         progressBar = view.findViewById(R.id.hotel_list_progress_bar);
 
 

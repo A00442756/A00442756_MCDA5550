@@ -30,7 +30,8 @@ public class HotelGuestDetailsFragment extends Fragment {
         String price = getArguments().getString("price");
         String availability = getArguments().getString("availability");
 
-        hotelRecapTextView.setText("The hotel name is " + hotelName + " and it costs " + price + " per night. The availability status is " + availability);
+        String hotelRecap = getString(R.string.hotel_recap, hotelName, price, availability);
+        hotelRecapTextView.setText(hotelRecap);
 
     }
 }

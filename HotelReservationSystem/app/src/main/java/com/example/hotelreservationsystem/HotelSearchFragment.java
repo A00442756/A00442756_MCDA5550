@@ -2,6 +2,7 @@ package com.example.hotelreservationsystem;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +20,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Objects;
 
 public class HotelSearchFragment extends Fragment {
     View view;
@@ -35,6 +35,7 @@ public class HotelSearchFragment extends Fragment {
     public static final String name = "nameKey";
     public static final String guestsCount = "guestsCount";
     public static final String myPref = "myPref";
+
 
     @Nullable
     @Override
@@ -59,26 +60,26 @@ public class HotelSearchFragment extends Fragment {
         checkInDatePicker = view.findViewById(R.id.check_in_date_picker);
         checkOutDatePicker = view.findViewById(R.id.check_out_date_picker);
 
-
-
         confirmSearchButton = view.findViewById(R.id.confirm_my_search_button);
-        confirmSearchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String checkInDate = getDateFromDatePicker(checkInDatePicker);
-                String checkOutDate = getDateFromDatePicker(checkOutDatePicker);
-                String numberOfGuests = guestCountEditText.getText().toString();
-                String guestName = guestNameEditText.getText().toString();
-                searchConfirmTextView.setText("Hey " + guestName + "! Your check-in date is " + checkInDate +
-                        " and checkout date is " + checkOutDate + " and there are " + numberOfGuests + " guest(s)") ;
+        confirmSearchButton.setOnClickListener(v -> {
+            String checkInDate = getDateFromDatePicker(checkInDatePicker);
+            String checkOutDate = getDateFromDatePicker(checkOutDatePicker);
+            String guestCount = guestCountEditText.getText().toString();
+            String guestName = guestNameEditText.getText().toString();
 
-                sharedPreferences = requireActivity().getSharedPreferences(myPref, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString(name, guestName);
-                editor.putString(guestsCount, numberOfGuests);
-                editor.apply();
+            Resources res = getResources();
+            String guestCountFormatted = res.getQuantityString(R.plurals.number_of_guests, Integer.parseInt(guestCount), Integer.parseInt(guestCount));
 
-            }});
+            String confirmText = getString(R.string.confirm_text, guestName, checkInDate, checkOutDate, guestCountFormatted);
+            searchConfirmTextView.setText(confirmText);
+
+            sharedPreferences = requireActivity().getSharedPreferences(myPref, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString(name, guestName);
+            editor.putString(guestsCount, guestCount);
+            editor.apply();
+
+        });
 
         searchButton = view.findViewById(R.id.search_button);
         //Search Button click Listener
