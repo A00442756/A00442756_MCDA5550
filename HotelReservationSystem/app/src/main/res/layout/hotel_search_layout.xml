@@ -89,15 +89,40 @@
                 app:layout_constraintTop_toTopOf="@id/number_of_guests_text_view" />
 
             <TextView
+                android:id="@+id/guest_name_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Guest name"
+                android:textColor="?android:textColorPrimary"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@id/number_of_guests_text_view"
+                app:layout_constraintStart_toStartOf="@id/number_of_guests_text_view"
+                />
+
+
+            <EditText
+                android:id="@+id/guest_name_edit_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Your Name"
+                app:layout_constraintBottom_toBottomOf="@id/guest_name_text_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guest_name_text_view"
+                app:layout_constraintTop_toTopOf="@id/guest_name_text_view"
+                />
+
+            <TextView
                 android:id="@+id/search_confirm_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
+                tools:text="Text"
+                android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/number_of_guests_text_view"
-                app:layout_constraintTop_toBottomOf="@id/number_of_guests_text_view" />
+                app:layout_constraintTop_toBottomOf="@id/guest_name_text_view" />
 
             <Button
                 android:id="@+id/confirm_my_search_button"
@@ -112,6 +137,30 @@
                 app:layout_constraintTop_toBottomOf="@id/search_confirm_text_view" />
 
             <Button
+                android:id="@+id/clear_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Clear"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/confirm_my_search_button" />
+
+            <Button
+                android:id="@+id/retrieve_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Retrieve From Shared Pref"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/clear_button" />
+
+            <Button
                 android:id="@+id/search_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -121,7 +170,7 @@
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/confirm_my_search_button" />
+                app:layout_constraintTop_toBottomOf="@id/retrieve_button" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
