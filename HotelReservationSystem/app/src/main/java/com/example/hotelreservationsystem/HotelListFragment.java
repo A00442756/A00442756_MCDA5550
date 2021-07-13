@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,7 +23,7 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class HotelListFragment extends Fragment {
+public class HotelListFragment extends Fragment implements ItemClickListener{
     View view;
     TextView headingTextView;
     RecyclerView recyclerView;
@@ -67,22 +68,11 @@ public class HotelListFragment extends Fragment {
 //        list.add(new HotelListData("Hotel Pearl", "500$", "false"));
 //        list.add(new HotelListData("Hotel Amano", "800$", "true"));
 //        list.add(new HotelListData("San Jones", "250$", "false"));
-//        list.add(new HotelListData("Halifax Regional Hotel", "2000$", "true"));
-//        list.add(new HotelListData("Hotel Pearl", "500$", "false"));
-//        list.add(new HotelListData("Hotel Amano", "800$", "true"));
-//        list.add(new HotelListData("San Jones", "250$", "false"));
-//        list.add(new HotelListData("Sunview", "$20", "true"));
-//        list.add(new HotelListData("Halifax Regional Hotel", "2000$", "true"));
-//        list.add(new HotelListData("Hotel Pearl", "500$", "false"));
-//        list.add(new HotelListData("Hotel Amano", "800$", "true"));
-//        list.add(new HotelListData("San Jones", "250$", "false"));
-//        list.add(new HotelListData("Halifax Regional Hotel", "2000$", "true"));
-//        list.add(new HotelListData("Hotel Pearl", "500$", "false"));
-//        list.add(new HotelListData("Hotel Amano", "800$", "true"));
-//        list.add(new HotelListData("San Jones", "250$", "false"));
 //
 //        return list;
 //    }
+
+
 
     public void getHotelListData(){
         progressBar.setVisibility(View.VISIBLE);
@@ -91,11 +81,7 @@ public class HotelListFragment extends Fragment {
             public void success(List<HotelListData> userListResponse, Response response) {
                 hotelListData = userListResponse;
 
-                progressBar.setVisibility(View.GONE);
-                recyclerView = view.findViewById(R.id.hotel_list_recycler_view);
-                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                HotelListAdapter hotelListAdapter = new HotelListAdapter(getActivity(), hotelListData);
-                recyclerView.setAdapter(hotelListAdapter);
+                setUpRecyclerView();
             }
 
             @Override
@@ -106,4 +92,38 @@ public class HotelListFragment extends Fragment {
         });
     }
 
+    private void setUpRecyclerView(){
+        progressBar.setVisibility(View.GONE);
+        recyclerView = view.findViewById(R.id.hotel_list_recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        HotelListAdapter hotelListAdapter = new HotelListAdapter(getActivity(), hotelListData);
+        recyclerView.setAdapter(hotelListAdapter);
+
+        hotelListAdapter.setClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view, int position) {
+        HotelListData hotelData = hotelListData.get(position);
+
+        String hotelName = hotelData.getHotelName();
+        String price = hotelData.getPrice();
+        String availability = hotelData.getAvailability();
+
+        Bundle bundle = new Bundle();
+        bundle.putString("hotel_name", hotelName);
+        bundle.putString("price", price);
+        bundle.putString("availability", availability);
+
+        HotelGuestDetailsFragment hotelGuestDetailsFragment = new HotelGuestDetailsFragment();
+        hotelGuestDetailsFragment.setArguments(bundle);
+
+        assert getFragmentManager() != null;
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.remove(HotelListFragment.this);
+        fragmentTransaction.replace(R.id.main_layout, hotelGuestDetailsFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commitAllowingStateLoss();
+
+    }
 }

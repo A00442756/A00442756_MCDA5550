@@ -1,6 +1,7 @@
 HELP.md
 target/
 bin/
+apache-tomcat-8.5.68/
 src/main/resources/application.properties
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/

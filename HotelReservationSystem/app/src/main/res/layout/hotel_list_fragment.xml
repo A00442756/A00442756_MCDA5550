@@ -22,7 +22,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:text="Heading"
                 android:textSize="25sp"
-                android:textColor="@color/black"
+                android:textColor="?android:textColorPrimary"
                 android:gravity="center_horizontal"
                 android:fontFamily="sans-serif"/>
 
@@ -35,7 +35,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="20dp" />
 
             <ProgressBar
                 android:id="@+id/hotel_list_progress_bar"

@@ -4,4 +4,12 @@
     <string name="guests_count">Guests count</string>
     <string name="check_in">Check in date</string>
     <string name="check_out">Check out date</string>
+    <string name="check_in_date">Check In Date</string>
+    <string name="check_out_date">Check Out Date</string>
+    <string name="number_of_guests">Number of guests</string>
+    <string name="confirm_my_search">CONFIRM MY SEARCH</string>
+    <string name="search">SEARCH</string>
+    <string name="availability">Availability</string>
+    <string name="price">Price</string>
+    <string name="hotel_name">Hotel Name</string>
 </resources>

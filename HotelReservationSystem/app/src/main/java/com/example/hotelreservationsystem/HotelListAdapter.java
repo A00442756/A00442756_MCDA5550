@@ -1,5 +1,6 @@
 package com.example.hotelreservationsystem;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import java.util.List;
 public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.ViewHolder> {
     LayoutInflater layoutInflater;
     List<HotelListData> hotelListData;
+    ItemClickListener clickListener;
 
     // constructor
     HotelListAdapter(Context context, List<HotelListData> hotelListData) {
@@ -22,7 +24,7 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.View
         this.hotelListData = hotelListData;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView hotelName, price, availability;
         public ViewHolder (View itemView) {
@@ -30,8 +32,19 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.View
             hotelName = itemView.findViewById(R.id.hotel_name_text_view);
             price = itemView.findViewById(R.id.price_text_view);
             availability = itemView.findViewById(R.id.availability_text_view);
+
+            itemView.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View v) {
+            if(clickListener != null) {
+                clickListener.onClick(v, getAbsoluteAdapterPosition());
+            }
+        }
+    }
+    public void setClickListener(ItemClickListener clickListener){
+        this.clickListener = clickListener;
     }
 
     @NonNull
