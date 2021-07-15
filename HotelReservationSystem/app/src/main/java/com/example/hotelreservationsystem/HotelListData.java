@@ -6,13 +6,15 @@ public class HotelListData {
     private String hotelName;
     private Integer price;
     private Boolean availability;
+    private String photoUrl;
 
-    public HotelListData(Integer hotelId, String hotelName, Integer price, Boolean availability) {
+    public HotelListData(Integer hotelId, String hotelName, Integer price, Boolean availability, String photoUrl) {
         super();
         this.hotelId = hotelId;
         this.hotelName = hotelName;
         this.price = price;
         this.availability = availability;
+        this.photoUrl = photoUrl;
     }
 
     public Integer getHotelId() {
@@ -45,5 +47,13 @@ public class HotelListData {
 
     public void setAvailability(Boolean availability) {
         this.availability = availability;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 }

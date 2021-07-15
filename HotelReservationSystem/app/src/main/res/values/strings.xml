@@ -19,5 +19,7 @@
     <string name="confirm_text">Hey %1$s! \nCheck-in date: %2$s \nCheckout date: %3$s \nGuest Count: %4$s</string>
     <string name="heading_text">The following rooms are available for your check in date of %1$s and check out date of %2$s with %3$s"</string>
     <string name="hotel_recap">The hotel name is %1$s and it costs %2$s per night. The availability status is %3$s</string>
+    <string name="retrieve_from_shared_pref">Retrieve From Shared Pref</string>
+    <string name="clear">Clear</string>
 
 </resources>

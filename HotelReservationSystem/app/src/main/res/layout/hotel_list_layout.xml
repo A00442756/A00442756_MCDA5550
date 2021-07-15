@@ -18,7 +18,7 @@
             android:text="@string/hotel_name"
             android:layout_marginTop="40dp"
             android:layout_marginLeft="10dp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/hotel_image_view"
             app:layout_constraintTop_toTopOf="parent"
             android:textSize="20sp"
             android:textColor="?android:textColorPrimary"
@@ -46,6 +46,21 @@
             android:textSize="20sp"
             android:textColor="?android:textColorPrimary"
             android:layout_marginEnd="10dp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/hotel_image_view"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@id/hotel_name_text_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+            app:strokeColor="@color/black"
+            app:strokeWidth="1dp"
+            android:src="@mipmap/ic_launcher"
+
+            android:layout_marginStart="10dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
