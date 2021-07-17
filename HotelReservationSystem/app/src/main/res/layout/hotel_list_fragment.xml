@@ -21,10 +21,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:text="Heading"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:textColor="?android:textColorPrimary"
-                android:gravity="center_horizontal"
-                android:fontFamily="sans-serif"/>
+                android:justificationMode="inter_word"
+                android:fontFamily="sans-serif"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/hotel_list_recycler_view"
@@ -32,11 +34,12 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/heading_text_view"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginStart="20dp" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"/>
 
             <ProgressBar
                 android:id="@+id/hotel_list_progress_bar"
@@ -44,12 +47,35 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="@id/hotel_list_recycler_view"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:visibility="visible"/>
 
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+
     </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/hotel_search_next_button"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:text="@string/next"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

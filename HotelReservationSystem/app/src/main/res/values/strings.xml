@@ -7,8 +7,8 @@
     <string name="check_in_date">Check In Date</string>
     <string name="check_out_date">Check Out Date</string>
     <string name="number_of_guests">Number of guests</string>
-    <string name="confirm_my_search">CONFIRM MY SEARCH</string>
-    <string name="search">SEARCH</string>
+    <string name="confirm_my_search">Confirm Search</string>
+    <string name="search">Search</string>
     <string name="availability">Availability</string>
     <string name="price">Price</string>
     <string name="hotel_name">Hotel Name</string>
@@ -18,8 +18,15 @@
     </plurals>
     <string name="confirm_text">Hey %1$s! \nCheck-in date: %2$s \nCheckout date: %3$s \nGuest Count: %4$s</string>
     <string name="heading_text">The following rooms are available for your check in date of %1$s and check out date of %2$s with %3$s"</string>
-    <string name="hotel_recap">The hotel name is %1$s and it costs %2$s per night. The availability status is %3$s</string>
+    <string name="hotel_recap">Hotel name: %1$s \nCheck-in date: %2$s \nCheckout date: %3$s \nPrice: %4$s</string>
     <string name="retrieve_from_shared_pref">Retrieve From Shared Pref</string>
     <string name="clear">Clear</string>
+    <string name="guest_name">Guest name</string>
+    <string name="your_name">Your Name</string>
+    <string name="next">Next</string>
+    <string name="guest_details">Guest Details</string>
+    <string name="guest_number">Guest %1$d</string>
+    <string name="female">Female</string>
+    <string name="male">Male</string>
 
 </resources>

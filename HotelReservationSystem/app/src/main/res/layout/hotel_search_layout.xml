@@ -86,13 +86,14 @@
                 app:layout_constraintBottom_toBottomOf="@id/number_of_guests_text_view"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/number_of_guests_text_view"
-                app:layout_constraintTop_toTopOf="@id/number_of_guests_text_view" />
+                app:layout_constraintTop_toTopOf="@id/number_of_guests_text_view"
+                android:autofillHints="" />
 
             <TextView
                 android:id="@+id/guest_name_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Guest name"
+                android:text="@string/guest_name"
                 android:textColor="?android:textColorPrimary"
                 android:textSize="20sp"
                 app:layout_constraintTop_toBottomOf="@id/number_of_guests_text_view"
@@ -104,11 +105,12 @@
                 android:id="@+id/guest_name_edit_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Your Name"
+                android:hint="@string/your_name"
                 app:layout_constraintBottom_toBottomOf="@id/guest_name_text_view"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/guest_name_text_view"
                 app:layout_constraintTop_toTopOf="@id/guest_name_text_view"
+                android:inputType="text"
                 />
 
             <TextView

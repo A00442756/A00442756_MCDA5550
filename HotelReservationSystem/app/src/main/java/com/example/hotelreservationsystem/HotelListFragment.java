@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +29,8 @@ public class HotelListFragment extends Fragment implements ItemClickListener{
     RecyclerView recyclerView;
     List<HotelListData> hotelListData;
     ProgressBar progressBar;
+    Button hotelSearchNextButton;
+    Bundle bundle = new Bundle();
 
     @Nullable
     @Override
@@ -51,6 +54,10 @@ public class HotelListFragment extends Fragment implements ItemClickListener{
         headingTextView.setText(headingText);
         progressBar = view.findViewById(R.id.hotel_list_progress_bar);
 
+        bundle.putString("check_in_date", checkInDate);
+        bundle.putString("check_out_date", checkOutDate);
+        bundle.putString("guest_count", guestsCount);
+
 
 //        ArrayList<HotelListData> hotelListData = initHotelListData();
 //        recyclerView = view.findViewById(R.id.hotel_list_recycler_view);
@@ -58,6 +65,8 @@ public class HotelListFragment extends Fragment implements ItemClickListener{
 //        HotelListAdapter hotelListAdapter = new HotelListAdapter(getActivity(), hotelListData);
 //        recyclerView.setAdapter(hotelListAdapter);
         getHotelListData();
+        hotelSearchNextButton = view.findViewById(R.id.hotel_search_next_button);
+
     }
 
 
@@ -112,7 +121,7 @@ public class HotelListFragment extends Fragment implements ItemClickListener{
         String price = hotelData.getPrice();
         String availability = hotelData.getAvailability();
 
-        Bundle bundle = new Bundle();
+
         bundle.putString("hotel_name", hotelName);
         bundle.putString("price", price);
         bundle.putString("availability", availability);
@@ -120,12 +129,16 @@ public class HotelListFragment extends Fragment implements ItemClickListener{
         HotelGuestDetailsFragment hotelGuestDetailsFragment = new HotelGuestDetailsFragment();
         hotelGuestDetailsFragment.setArguments(bundle);
 
-        assert getFragmentManager() != null;
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        fragmentTransaction.remove(HotelListFragment.this);
-        fragmentTransaction.replace(R.id.main_layout, hotelGuestDetailsFragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commitAllowingStateLoss();
+        hotelSearchNextButton.setVisibility(View.VISIBLE);
+        hotelSearchNextButton.setOnClickListener(v -> {
+            assert getFragmentManager() != null;
+            FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+            fragmentTransaction.remove(HotelListFragment.this);
+            fragmentTransaction.replace(R.id.main_layout, hotelGuestDetailsFragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commitAllowingStateLoss();
+        });
 
     }
+
 }
