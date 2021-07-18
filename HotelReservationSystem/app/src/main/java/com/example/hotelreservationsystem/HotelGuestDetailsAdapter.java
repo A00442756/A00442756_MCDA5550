@@ -17,9 +17,9 @@ import java.util.ArrayList;
 public class HotelGuestDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
     LayoutInflater layoutInflater;
-    ArrayList<GuestListData> arrayList;
+    ArrayList<GuestData> arrayList;
 
-    public HotelGuestDetailsAdapter(Context context, ArrayList<GuestListData> arrayList) {
+    public HotelGuestDetailsAdapter(Context context, ArrayList<GuestData> arrayList) {
         this.layoutInflater = LayoutInflater.from(context);
         this.context = context;
         this.arrayList = arrayList;
@@ -42,7 +42,7 @@ public class HotelGuestDetailsAdapter extends RecyclerView.Adapter<RecyclerView.
         return arrayList.size();
     }
 
-    public ArrayList<GuestListData> getArrayList() {
+    public ArrayList<GuestData> getArrayList() {
         return arrayList;
     }
 
@@ -65,23 +65,23 @@ public class HotelGuestDetailsAdapter extends RecyclerView.Adapter<RecyclerView.
                     int index = radio.indexOfChild(radioButton);
 
                     // Add logic here
-                    GuestListData guestListData;
+                    GuestData guestData;
 
                     switch (index) {
                         case 0: // first button
 
                             gender = GenderData.MALE;
-                            guestListData = arrayList.get(getAbsoluteAdapterPosition());
-                            guestListData.setGender(gender);
-                            arrayList.set(getAbsoluteAdapterPosition(), guestListData);
+                            guestData = arrayList.get(getAbsoluteAdapterPosition());
+                            guestData.setGender(gender);
+                            arrayList.set(getAbsoluteAdapterPosition(), guestData);
 
                             break;
                         case 1: // second button
 
                             gender = GenderData.FEMALE;
-                            guestListData = arrayList.get(getAbsoluteAdapterPosition());
-                            guestListData.setGender(gender);
-                            arrayList.set(getAbsoluteAdapterPosition(), guestListData);
+                            guestData = arrayList.get(getAbsoluteAdapterPosition());
+                            guestData.setGender(gender);
+                            arrayList.set(getAbsoluteAdapterPosition(), guestData);
                             break;
                     }
                 }
@@ -96,9 +96,9 @@ public class HotelGuestDetailsAdapter extends RecyclerView.Adapter<RecyclerView.
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                    GuestListData guestListData = arrayList.get(getAbsoluteAdapterPosition());
-                    guestListData.setFirstName(charSequence + "");
-                    arrayList.set(getAbsoluteAdapterPosition(), guestListData);
+                    GuestData guestData = arrayList.get(getAbsoluteAdapterPosition());
+                    guestData.setFirstName(charSequence + "");
+                    arrayList.set(getAbsoluteAdapterPosition(), guestData);
 
                 }
 
@@ -117,9 +117,9 @@ public class HotelGuestDetailsAdapter extends RecyclerView.Adapter<RecyclerView.
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                    GuestListData guestListData = arrayList.get(getAbsoluteAdapterPosition());
-                    guestListData.setLastName(charSequence + "");
-                    arrayList.set(getAbsoluteAdapterPosition(), guestListData);
+                    GuestData guestData = arrayList.get(getAbsoluteAdapterPosition());
+                    guestData.setLastName(charSequence + "");
+                    arrayList.set(getAbsoluteAdapterPosition(), guestData);
 
 
                 }

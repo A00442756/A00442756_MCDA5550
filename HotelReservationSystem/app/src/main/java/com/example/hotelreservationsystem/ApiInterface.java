@@ -2,12 +2,18 @@ package com.example.hotelreservationsystem;
 
 import java.util.List;
 
-import retrofit.Callback;
-import retrofit.http.GET;
+import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.GET;
+import retrofit2.http.POST;
 
 
 public interface ApiInterface  {
     @GET("/hotels")
-    public void getHotelsList(Callback<List<HotelListData>> callback);
+    Call<List<HotelListData>> getHotelsList();
+//    public void getHotelsList(Callback<List<HotelListData>> callback);
+
+    @POST("/reservation")
+    Call<ReservationData> getReservationNumber(@Body ReservationData reservation);
 
 }

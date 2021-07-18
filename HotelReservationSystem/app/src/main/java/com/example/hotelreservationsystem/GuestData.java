@@ -1,13 +1,21 @@
 package com.example.hotelreservationsystem;
 
-public class GuestListData {
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+public class GuestData implements Serializable {
+    @SerializedName("guestId")
     private Long guestId;
+    @SerializedName("firstName")
     private String firstName;
+    @SerializedName("lastName")
     private String lastName;
+    @SerializedName("gender")
     private GenderData gender;
 
-    public GuestListData(){}
-    public GuestListData(Long guestId, String firstName, String lastName, GenderData gender) {
+    public GuestData(){}
+    public GuestData(Long guestId, String firstName, String lastName, GenderData gender) {
         this.guestId = guestId;
         this.firstName = firstName;
         this.lastName = lastName;

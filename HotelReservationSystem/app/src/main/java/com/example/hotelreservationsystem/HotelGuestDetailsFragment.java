@@ -7,19 +7,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HotelGuestDetailsFragment extends Fragment {
     View view;
     RecyclerView guestRecyclerView;
-    ArrayList<GuestListData> arrayList = new ArrayList<>();
+    ArrayList<GuestData> arrayList = new ArrayList<>();
 
 
     @Nullable
@@ -50,11 +58,11 @@ public class HotelGuestDetailsFragment extends Fragment {
         hotelRecapTextView.setText(hotelRecap);
 
         for (int i = 0; i < guestCountInt; i++) {
-            GuestListData guestListData = new GuestListData();
-            guestListData.setFirstName("");
-            guestListData.setLastName("");
-            guestListData.setGender(GenderData.MALE);
-            arrayList.add(guestListData);
+            GuestData guestData = new GuestData();
+            guestData.setFirstName("");
+            guestData.setLastName("");
+            guestData.setGender(GenderData.MALE);
+            arrayList.add(guestData);
         }
 
         HotelGuestDetailsAdapter hotelGuestDetailsAdapter = new HotelGuestDetailsAdapter(getActivity(), arrayList);
@@ -63,7 +71,7 @@ public class HotelGuestDetailsFragment extends Fragment {
         guestNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ArrayList<GuestListData> guestArrayList = hotelGuestDetailsAdapter.getArrayList();
+                ArrayList<GuestData> guestArrayList = hotelGuestDetailsAdapter.getArrayList();
 
                 for (int i = 0; i < guestArrayList.size(); i++) {
 
@@ -72,12 +80,65 @@ public class HotelGuestDetailsFragment extends Fragment {
                     Log.e("Gender " + i, guestArrayList.get(i).getGender() + "");
 
                 }
+                Log.e("Hotel name", hotelName);
+                Log.e("Check in", checkInDate);
+                Log.e("Check out", checkOutDate);
+                reservationConfirmation(hotelName, checkInDate, checkOutDate, guestArrayList);
+
+//                Bundle bundle = new Bundle();
+//                bundle.putString("hotel_name", hotelName);
+//                bundle.putSerializable("guest_array_list", (Serializable) guestArrayList);
+//
+//                ReservationFragment reservationFragment = new ReservationFragment();
+//                reservationFragment.setArguments(bundle);
+//
+//                FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+//                fragmentTransaction.remove(HotelGuestDetailsFragment.this);
+//                fragmentTransaction.replace(R.id.main_layout, reservationFragment);
+//                fragmentTransaction.addToBackStack(null);
+//                fragmentTransaction.commitAllowingStateLoss();
+
             }
         });
 
 //        setUpRecyclerView();
 
+
     }
+    ApiInterface apiInterface;
+    private void reservationConfirmation (String hotelName, String checkInDate, String checkOutDate, ArrayList<GuestData> guestDataArrayList) {
+        final ReservationData reservation = new ReservationData(hotelName, checkInDate, checkOutDate, guestDataArrayList);
+        apiInterface = Api.getClient().create(ApiInterface.class);
+        Call<ReservationData> call1 = apiInterface.getReservationNumber(reservation);
+        call1.enqueue(new Callback<ReservationData>() {
+            @Override
+            public void onResponse(@NonNull Call<ReservationData> call, @NonNull Response<ReservationData> response) {
+                ReservationData reservationData = response.body();
+
+                Log.e("Reservation", "reservation --> " + reservationData);
+                if (reservationData != null) {
+                    Log.e("Confirmation Number", "getConfirmationNumber          -->  " + reservationData.getConfirmationNumber());
+
+//                    String responseCode = loginResponse.getResponseCode();
+//                    Log.e("keshav", "getResponseCode  -->  " + loginResponse.getResponseCode());
+//                    Log.e("keshav", "getResponseMessage  -->  " + loginResponse.getResponseMessage());
+//                    if (responseCode != null && responseCode.equals("404")) {
+//                        Toast.makeText(MainActivity.this, "Invalid Login Details \n Please try again", Toast.LENGTH_SHORT).show();
+//                    } else {
+//                        Toast.makeText(MainActivity.this, "Welcome " + loginResponse.getFirstName(), Toast.LENGTH_SHORT).show();
+//                    }
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ReservationData> call, @NonNull Throwable t) {
+                Toast.makeText(getActivity(), t.toString(), Toast.LENGTH_LONG).show();
+                call.cancel();
+            }
+        });
+    }
+
+
 
     private void setUpRecyclerView(){
         guestRecyclerView = view.findViewById(R.id.guest_details_recycler_view);

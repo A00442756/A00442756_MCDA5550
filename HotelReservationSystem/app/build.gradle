@@ -44,7 +44,7 @@ dependencies {
     // For control over item selection of both touch and mouse driven selection
     implementation "androidx.recyclerview:recyclerview-selection:1.1.0"
     // retrofit
-    implementation 'com.squareup.retrofit:retrofit:1.9.0'
+//    implementation 'com.squareup.retrofit:retrofit:1.9.0'
     // add below dependency for using room.
     implementation 'androidx.room:room-runtime:2.3.0'
     annotationProcessor 'androidx.room:room-compiler:2.3.0'
@@ -59,4 +59,10 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0'
     // circular image
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    // gson
+    implementation 'com.google.code.gson:gson:2.8.6'
+    // retrofit2
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+
+    implementation 'com.squareup.retrofit2:converter-gson:2.1.0' //for retrofit conversion
 }

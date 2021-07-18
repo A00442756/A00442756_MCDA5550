@@ -19,9 +19,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HotelListFragment extends Fragment implements ItemClickListener{
     View view;
@@ -87,20 +87,23 @@ public class HotelListFragment extends Fragment implements ItemClickListener{
 
     public void getHotelListData(){
         progressBar.setVisibility(View.VISIBLE);
-        Api.getClient().getHotelsList(new Callback<List<HotelListData>>() {
+        ApiInterface apiInterface = Api.getClient().create(ApiInterface.class);
+        Call<List<HotelListData>> call = apiInterface.getHotelsList();
+        call.enqueue(new Callback<List<HotelListData>>() {
             @Override
-            public void success(List<HotelListData> userListResponse, Response response) {
-                hotelListData = userListResponse;
-
+            public void onResponse(@NonNull Call<List<HotelListData>> call, @NonNull Response<List<HotelListData>> response) {
+                hotelListData = response.body();
                 setUpRecyclerView();
             }
 
             @Override
-            public void failure(RetrofitError error) {
+            public void onFailure(@NonNull Call<List<HotelListData>> call, @NonNull Throwable t) {
                 progressBar.setVisibility(View.GONE);
-                Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), t.toString(), Toast.LENGTH_LONG).show();
             }
+
         });
+
     }
 
     private void setUpRecyclerView(){
@@ -131,7 +134,6 @@ public class HotelListFragment extends Fragment implements ItemClickListener{
 
         hotelSearchNextButton.setVisibility(View.VISIBLE);
         hotelSearchNextButton.setOnClickListener(v -> {
-            assert getFragmentManager() != null;
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
             fragmentTransaction.remove(HotelListFragment.this);
             fragmentTransaction.replace(R.id.main_layout, hotelGuestDetailsFragment);

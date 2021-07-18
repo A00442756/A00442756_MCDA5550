@@ -1,11 +1,18 @@
 package com.example.hotelreservationsystem;
 
+import com.google.gson.annotations.SerializedName;
+
 public class HotelListData {
 
+    @SerializedName("hotelId")
     private Integer hotelId;
+    @SerializedName("hotelName")
     private String hotelName;
+    @SerializedName("price")
     private Integer price;
+    @SerializedName("availability")
     private Boolean availability;
+    @SerializedName("photoUrl")
     private String photoUrl;
 
     public HotelListData(Integer hotelId, String hotelName, Integer price, Boolean availability, String photoUrl) {
