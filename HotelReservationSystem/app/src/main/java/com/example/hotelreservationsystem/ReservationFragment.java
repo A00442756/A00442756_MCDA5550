@@ -1,6 +1,7 @@
 package com.example.hotelreservationsystem;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,10 @@ public class ReservationFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         reservationTextView = view.findViewById(R.id.reservation_text_view);
-
+        assert getArguments() != null;
+        int confirmationNumber = getArguments().getInt("confirmation_number");
+        String reservationText = getString(R.string.reservation_confirmation, confirmationNumber);
+        Log.e("reservation text ", reservationText);
+        reservationTextView.setText(reservationText);
     }
 }

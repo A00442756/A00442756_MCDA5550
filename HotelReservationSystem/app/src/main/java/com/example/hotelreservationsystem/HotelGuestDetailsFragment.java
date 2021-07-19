@@ -85,18 +85,7 @@ public class HotelGuestDetailsFragment extends Fragment {
                 Log.e("Check out", checkOutDate);
                 reservationConfirmation(hotelName, checkInDate, checkOutDate, guestArrayList);
 
-//                Bundle bundle = new Bundle();
-//                bundle.putString("hotel_name", hotelName);
-//                bundle.putSerializable("guest_array_list", (Serializable) guestArrayList);
-//
-//                ReservationFragment reservationFragment = new ReservationFragment();
-//                reservationFragment.setArguments(bundle);
-//
-//                FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-//                fragmentTransaction.remove(HotelGuestDetailsFragment.this);
-//                fragmentTransaction.replace(R.id.main_layout, reservationFragment);
-//                fragmentTransaction.addToBackStack(null);
-//                fragmentTransaction.commitAllowingStateLoss();
+
 
             }
         });
@@ -117,16 +106,20 @@ public class HotelGuestDetailsFragment extends Fragment {
 
                 Log.e("Reservation", "reservation --> " + reservationData);
                 if (reservationData != null) {
-                    Log.e("Confirmation Number", "getConfirmationNumber          -->  " + reservationData.getConfirmationNumber());
+                    Log.e("Confirmation", "getConfirmationNumber  -->  " + reservationData.getConfirmationNumber());
 
-//                    String responseCode = loginResponse.getResponseCode();
-//                    Log.e("keshav", "getResponseCode  -->  " + loginResponse.getResponseCode());
-//                    Log.e("keshav", "getResponseMessage  -->  " + loginResponse.getResponseMessage());
-//                    if (responseCode != null && responseCode.equals("404")) {
-//                        Toast.makeText(MainActivity.this, "Invalid Login Details \n Please try again", Toast.LENGTH_SHORT).show();
-//                    } else {
-//                        Toast.makeText(MainActivity.this, "Welcome " + loginResponse.getFirstName(), Toast.LENGTH_SHORT).show();
-//                    }
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("confirmation_number", reservationData.getConfirmationNumber());
+
+                    ReservationFragment reservationFragment = new ReservationFragment();
+                    reservationFragment.setArguments(bundle);
+
+                    FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+                    fragmentTransaction.remove(HotelGuestDetailsFragment.this);
+                    fragmentTransaction.replace(R.id.main_layout, reservationFragment);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commitAllowingStateLoss();
+
                 }
             }
 

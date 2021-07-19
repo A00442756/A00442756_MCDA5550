@@ -28,6 +28,7 @@
     <string name="guest_number">Guest %1$d</string>
     <string name="female">Female</string>
     <string name="male">Male</string>
-    <string name="reservation_confirmation">Thank you for your reservation, your reservation number is %1$s</string>
+    <string name="reservation_confirmation">Thank you for your reservation, your reservation number is %1$d</string>
+    <string name="submit">Submit</string>
 
 </resources>
