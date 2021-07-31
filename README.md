@@ -1,3 +1,7 @@
+
+
+https://user-images.githubusercontent.com/77229948/127752453-c59bd138-dad6-4520-992f-0961a7a2ab94.mp4
+
 # API Documentation
 
 ## GET `/hotels`
